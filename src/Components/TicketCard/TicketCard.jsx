@@ -1,14 +1,13 @@
-import React, { use } from 'react';
+
 import vactor2 from '../../assets/date.png'
 
-const TicketCard = ({customerTicketPromise}) => {
-  const customerTicket = use(customerTicketPromise);
-  console.log(customerTicket);
+const TicketCard = ({ticket}) => {
+  console.log(ticket);
 
     return (
-        <div className='bg-[#ffffff] p-3'>
+        <div className='bg-[#ffffff] p-3 md:w-md w-72'>
             <div>
-                <span>Login Issues - Can't Access Account</span>
+                <span className='text-md font-medium' >Login Issues - Can't Access Account</span>
                 <span>open</span>
             </div>
             <div>

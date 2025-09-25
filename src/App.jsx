@@ -3,6 +3,8 @@ import { Suspense } from 'react'
 import './App.css'
 import Banner from './Components/Banner/Banner'
 import TicketCard from './Components/TicketCard/TicketCard'
+import Counter from './Components/Counter/Counter'
+import Tickets from './Components/Tickets/Tickets'
 
 const customerTicketPromise = fetch('/Utilitis/customer.json').then(res => res.json())
 
@@ -16,19 +18,21 @@ function App() {
      <Banner/>
 
 
-     <Suspense fallback={<p><span className="loading loading-spinner loading-xl"></span></p>}>
+     <Counter>
+      <Suspense fallback={<p className='text-center'><span className="loading loading-spinner loading-xl"></span></p>}>
      <div>
-      <div>
+      <div className='text-xl font-bold text-gray-500'>
         Customer Tickets
       </div>
       <div>
         {
-          
+           <Tickets  customerTicketPromise={customerTicketPromise} />
         }
       </div>
      </div>
-      <TicketCard   customerTicketPromise={customerTicketPromise} />
+     
      </Suspense>
+     </Counter>
       
     </div>
   )
