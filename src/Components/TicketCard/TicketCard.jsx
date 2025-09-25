@@ -1,26 +1,31 @@
 
 import vactor2 from '../../assets/date.png'
 
-const TicketCard = ({ticket}) => {
-  console.log(ticket);
+const TicketCard = ({ ticket }) => {
+    console.log(ticket);
 
     return (
-        <div className='bg-[#ffffff] p-3 md:w-md w-72'>
-            <div>
-                <span className='text-md font-medium' >Login Issues - Can't Access Account</span>
-                <span>open</span>
-            </div>
-            <div>
-                Customer is unable to log in to their account. They've tried resetting their password multiple times but still...
-            </div>
-            <div>
-                <div>
-                    <span>#1001</span>
-                    <span>HIGH PRIORITY</span>
+        <div className='lg:w-full'>
+            <div className='bg-[#ffffff] p-5'>
+                <div className='flex justify-between mb-2'>
+                    <span className='text-md font-medium' >{ticket.title}</span>
+                    <span className={`flex items-center font-semibold rounded-xl mr-2 py-1 px-3 shadow ${ticket.status == "Open" ? 'text-[#0B5E06] bg-[#B9F8CF] ' : 'text-[#FEBB0C] bg-yellow-100'}`}>{ticket.status}</span>
                 </div>
-                <div >
-                    <span>John Smith</span>
-                    <span><img  src={vactor2} alt="" /> 1/15/2024</span>
+                <span className='text-gray-500 '>
+                    {ticket.description}
+                </span>
+
+
+                <div className='flex justify-between items-center mt-3'>
+                    <div className='flex gap-3'>
+                        <span className='text-gray-500 fontb'>{ticket.id}</span>
+                        <span className={`font-semibold   ${ticket.priority == "High Priority" ? 'text-[#F83044]' : ticket.priority == "Low Priority" ? 'text-[#0B5E06]' : "text-[#FEBB0C]"}`}>{ticket.priority}</span>
+                    </div>
+                    <div className='flex items-center gap-1.5'>
+                        <span className='text-gray-500'>{ticket.customer}</span>
+                        <img src={vactor2} alt="" />
+                        <span className='text-gray-500'>{ticket.createdAt}</span>
+                    </div>
                 </div>
             </div>
         </div>
