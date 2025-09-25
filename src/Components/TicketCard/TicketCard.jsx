@@ -9,7 +9,7 @@ const TicketCard = ({ ticket, handleAddToTask}) => {
             <div className='bg-[#ffffff] p-5' onClick={() => {handleAddToTask(ticket)}}>
                 <div className='flex justify-between mb-2'>
                     <span className='text-md font-medium' >{ticket.title}</span>
-                    <span className={`flex items-center font-semibold rounded-xl mr-2 py-1 px-3 shadow ${ticket.status == "Open" ? 'text-[#0B5E06] bg-[#B9F8CF] ' : 'text-[#FEBB0C] bg-yellow-100'}`}>{ticket.status}</span>
+                    <span className={`flex items-center  rounded-xl mr-2 py-1 px-3 shadow ${ticket.status == "Open" ? 'text-[#0B5E06] font-semibold bg-[#B9F8CF] ' : 'text-[#FEBB0C] bg-yellow-100'}`}>{ticket.status}</span>
                 </div>
                 <span className='text-gray-500 '>
                     {ticket.description}

@@ -6,6 +6,7 @@ import Banner from './Components/Banner/Banner'
 import Counter from './Components/Counter/Counter'
 import Tickets from './Components/Tickets/Tickets'
 import { toast } from 'react-toastify'
+import NavBar from './Components/NavBar/NavBar'
 
 
 const customerTicketPromise = fetch('/Utilitis/customer.json').then(res => res.json())
@@ -28,13 +29,15 @@ function App() {
   const handleCompleteTask = (ticket) => {
     setInprogress(inProgress.filter((tic) => tic.id !== ticket.id));
     setResolve([...resolve,ticket]);
+
     setTickets(tickets.filter((tic) => tic.id !== ticket.id));
     toast.success(`Task "${ticket.title}" marked as resolve`)
   }
 
 
   return (
-    <div className='bg-[#f5f5f5] p-5'>
+    <div className='bg-[#f5f5f5]'>
+      <NavBar/>
       
     <Counter>
        <Banner inProgress = {inProgress} resolve={resolve}/>

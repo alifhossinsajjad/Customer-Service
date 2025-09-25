@@ -9,7 +9,7 @@ import bgImg from '../../assets/image.png'
 const Banner = ({inProgress,resolve}) => {
     return (
          <Counter>
-             <div className='grid grid-cols-2 gap-5 my-14 '>
+             <div className='grid grid-cols-2 gap-5 my-14 p-5'>
 
                 <div>
                     <div className='relative flex flex-col justify-center bg-gradient-to-r  h-50 from-[#632EE3] to-[#9F62F2] text-white rounded-xl text-center shadow p-6' >
