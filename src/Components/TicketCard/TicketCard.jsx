@@ -1,12 +1,12 @@
 
 import vactor2 from '../../assets/date.png'
 
-const TicketCard = ({ ticket }) => {
-    console.log(ticket);
+const TicketCard = ({ ticket, handleAddToTask}) => {
+    
 
     return (
-        <div className='lg:w-full'>
-            <div className='bg-[#ffffff] p-5'>
+        <div className='lg:w-full' >
+            <div className='bg-[#ffffff] p-5' onClick={() => {handleAddToTask(ticket)}}>
                 <div className='flex justify-between mb-2'>
                     <span className='text-md font-medium' >{ticket.title}</span>
                     <span className={`flex items-center font-semibold rounded-xl mr-2 py-1 px-3 shadow ${ticket.status == "Open" ? 'text-[#0B5E06] bg-[#B9F8CF] ' : 'text-[#FEBB0C] bg-yellow-100'}`}>{ticket.status}</span>
