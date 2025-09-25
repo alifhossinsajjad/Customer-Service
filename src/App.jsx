@@ -7,6 +7,7 @@ import Counter from './Components/Counter/Counter'
 import Tickets from './Components/Tickets/Tickets'
 import { toast } from 'react-toastify'
 import NavBar from './Components/NavBar/NavBar'
+import Footer from './Components/Footer/Footer'
 
 
 const customerTicketPromise = fetch('/Utilitis/customer.json').then(res => res.json())
@@ -58,6 +59,8 @@ function App() {
       </div>
       
      </Counter>
+
+     <Footer/>
       
     </div>
   )
