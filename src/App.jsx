@@ -22,6 +22,10 @@ function App() {
 
   const [tickets,setTickets] = useState(customerTicketPromise);
 
+  // useEffect(() => {
+  //   customerTicketPromise.then(data => setTickets(data));
+  // })
+
   const [inProgress, setInprogress] = useState([])
   const [resolve, setResolve] = useState([])
 
@@ -38,8 +42,8 @@ function App() {
     setInprogress(inProgress.filter((tic) => tic.id !== ticket.id));
     toast.success('Task Complete')
     setResolve([...resolve,ticket]);
-    setTickets(tickets.filter((tic) => tic.id !== tickets.id));
-    return;
+
+    setTickets(tickets.filter((tic) => tic.id !== ticket.id));
   }
 
 
@@ -57,7 +61,7 @@ function App() {
      <Counter>
 
       <div>
-        <Suspense fallback={<p className='text-center'><span className="loading loading-spinner loading-xl"></span></p>}>
+        <Suspense fallback={<p className='text-center mb-20'><span className="loading loading-spinner loading-xl"></span></p>}>
       <div>
         {
            <Tickets  customerTicketPromise={customerTicketPromise}  handleAddToTask ={handleAddToTask} handleCompleteTask ={handleCompleteTask} inProgress={inProgress} resolve={resolve} tickets={tickets} setTickets={setTickets}/>
