@@ -9,7 +9,7 @@ const Tickets = ({ handleAddToTask,handleCompleteTask,inProgress,resolve,ticketl
 
         <div className='grid grid-cols-1 xl:grid-cols-12 md:grid-cols-2 gap-4 p-6 flex-1'>
             <div  className='md:col-span-2 lg:col-span-9 col-span-1  space-y-4' >
-                <h2>Customer Tickets</h2>
+                <h2 className='font-bold text-lg'>Customer Tickets</h2>
                 <div className='grid md:grid-cols-2 gap-4'>
 
                     {
