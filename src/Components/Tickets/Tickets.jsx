@@ -13,7 +13,7 @@ const Tickets = ({ customerTicketPromise , handleAddToTask,handleCompleteTask,in
                 <h2>Customer Tickets</h2>
                 <div className='grid md:grid-cols-2 gap-4'>
                     {
-                        ticketsData.map((ticket) => <TicketCard key={ticket.id} ticket={ticket}  handleAddToTask= {handleAddToTask}/>)
+                        ticketsData.map((ticket) => <TicketCard key={ticket.id} ticket={ticket}  handleAddToTask= {handleAddToTask} />)
                     }
                 </div>
             </div>

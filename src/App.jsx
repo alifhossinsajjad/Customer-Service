@@ -14,6 +14,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 
+
 const customerTicketPromise = fetch('/Utilitis/customer.json').then(res => res.json())
 
 
@@ -27,18 +28,21 @@ function App() {
   const handleAddToTask = (ticket) => {
     if(!inProgress.find((tic) => tic.id === ticket.id)){
       setInprogress([...inProgress,ticket])
-      toast.info(`Task "${ticket.title}" added to In-Progress`)
-      // alert(`Task "${ticket.title}" added to In-Progress`)
+       toast.success(`In-Progress`)
+       return;
+      
     }
   }
 
   const handleCompleteTask = (ticket) => {
     setInprogress(inProgress.filter((tic) => tic.id !== ticket.id));
+    toast.success('Task Complete')
     setResolve([...resolve,ticket]);
-
-    setTickets(tickets.filter((tic) => tic.id !== ticket.id));
-    toast.success(`Task "${ticket.title}" marked as resolve`)
+    setTickets(tickets.filter((tic) => tic.id !== tickets.id));
+    return;
   }
+
+
 
 
   return (
@@ -56,7 +60,7 @@ function App() {
         <Suspense fallback={<p className='text-center'><span className="loading loading-spinner loading-xl"></span></p>}>
       <div>
         {
-           <Tickets  customerTicketPromise={customerTicketPromise}  handleAddToTask ={handleAddToTask} handleCompleteTask ={handleCompleteTask} inProgress={inProgress} resolve={resolve}/>
+           <Tickets  customerTicketPromise={customerTicketPromise}  handleAddToTask ={handleAddToTask} handleCompleteTask ={handleCompleteTask} inProgress={inProgress} resolve={resolve} tickets={tickets} setTickets={setTickets}/>
         }
       </div>
       
