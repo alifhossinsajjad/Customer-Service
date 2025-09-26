@@ -8,15 +8,16 @@ const TaskStatus = ({ handleCompleteTask, inProgress, resolve }) => {
       <div>
           <div className='lg:w-88 md:w-lg w-72 '>
             <h2 className='text-xl font-bold '>Task Status</h2>
+           
 
             {
                 inProgress.map((ticket) => (
-                    <div key={ticket.id} className='shadow p-5 rounded-xl mb-3 '>
+                    <div key={ticket.id} className='shadow p-5 rounded-xl bg-white mb-3 '>
                         <div className='grid '>
                             <span className='text-sm font-medium mb-3'>
                                 {ticket.title}
                             </span>
-                            <button className="bg-green-500 text-white text-xl p-2  rounded hover:bg-green-600 cursor-pointer"
+                            <button className="bg-green-500  text-white text-xl p-2  rounded hover:bg-green-600 cursor-pointer"
                                 onClick={() => handleCompleteTask(ticket)} >Complete</button>
                                 
                         </div>

@@ -1,5 +1,5 @@
 
-import { Suspense, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import './App.css'
 import Banner from './Components/Banner/Banner'
 
@@ -15,35 +15,41 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 
-const customerTicketPromise = fetch('/Utilitis/customer.json').then(res => res.json())
+
 
 
 function App() {
 
-  const [tickets,setTickets] = useState(customerTicketPromise);
+  const [tickets, setTickets] = useState([]);
 
-  // useEffect(() => {
-  //   customerTicketPromise.then(data => setTickets(data));
-  // })
 
   const [inProgress, setInprogress] = useState([])
   const [resolve, setResolve] = useState([])
 
+  useEffect(() => {
+    fetch('/customer.json').then(res => res.json())
+    .then(data => setTickets((data)))
+  }, [])
+
+  
   const handleAddToTask = (ticket) => {
-    if(!inProgress.find((tic) => tic.id === ticket.id)){
-      setInprogress([...inProgress,ticket])
-       toast.success(`In-Progress`)
-       return;
-      
+    if (!inProgress.find((tic) => tic.id === ticket.id)) {
+      setInprogress([...inProgress, ticket])
+      toast.success(`In-Progress`)
+      return;
+
     }
   }
 
   const handleCompleteTask = (ticket) => {
+    console.log(ticket);
     setInprogress(inProgress.filter((tic) => tic.id !== ticket.id));
+    console.log(tickets);
     toast.success('Task Complete')
-    setResolve([...resolve,ticket]);
+    setResolve([...resolve, ticket]);
 
     setTickets(tickets.filter((tic) => tic.id !== ticket.id));
+
   }
 
 
@@ -51,30 +57,37 @@ function App() {
 
   return (
     <div className='bg-[#f5f5f5]'>
-      <NavBar/>
-      
-    <Counter>
-       <Banner inProgress = {inProgress} resolve={resolve}/>
-    </Counter>
+      <NavBar />
+
+      <Counter>
+        <Banner inProgress={inProgress} resolve={resolve} />
+      </Counter>
 
 
-     <Counter>
+      <Counter>
 
-      <div>
-        <Suspense fallback={<p className='text-center mb-20'><span className="loading loading-spinner loading-xl"></span></p>}>
-      <div>
-        {
-           <Tickets  customerTicketPromise={customerTicketPromise}  handleAddToTask ={handleAddToTask} handleCompleteTask ={handleCompleteTask} inProgress={inProgress} resolve={resolve} tickets={tickets} setTickets={setTickets}/>
-        }
-      </div>
-      
-     </Suspense>
-      </div>
-      
-     </Counter>
+        <div>
+          <Suspense fallback={<p className='text-center mb-20'><span className="loading loading-spinner loading-xl"></span></p>}>
+            <div>
+              {
+                <Tickets
 
-     <Footer/>
-      
+                  handleAddToTask={handleAddToTask}
+                  handleCompleteTask={handleCompleteTask}
+                  inProgress={inProgress}
+                  resolve={resolve}
+                  ticketlist={tickets}
+                />
+              }
+            </div>
+
+          </Suspense>
+        </div>
+
+      </Counter>
+
+      <Footer />
+
     </div>
   )
 }
