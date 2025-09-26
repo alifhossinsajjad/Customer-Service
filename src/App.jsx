@@ -5,9 +5,13 @@ import Banner from './Components/Banner/Banner'
 
 import Counter from './Components/Counter/Counter'
 import Tickets from './Components/Tickets/Tickets'
-import { toast } from 'react-toastify'
+
 import NavBar from './Components/NavBar/NavBar'
 import Footer from './Components/Footer/Footer'
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 const customerTicketPromise = fetch('/Utilitis/customer.json').then(res => res.json())
@@ -24,6 +28,7 @@ function App() {
     if(!inProgress.find((tic) => tic.id === ticket.id)){
       setInprogress([...inProgress,ticket])
       toast.info(`Task "${ticket.title}" added to In-Progress`)
+      // alert(`Task "${ticket.title}" added to In-Progress`)
     }
   }
 
