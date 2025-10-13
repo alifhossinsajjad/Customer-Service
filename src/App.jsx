@@ -14,10 +14,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 
-
-
-
-
 function App() {
 
   const [tickets, setTickets] = useState([]);
@@ -42,10 +38,11 @@ function App() {
   }
 
   const handleCompleteTask = (ticket) => {
-    console.log(ticket);
+    
     setInprogress(inProgress.filter((tic) => tic.id !== ticket.id));
-    console.log(tickets);
+
     toast.success('Task Complete')
+
     setResolve([...resolve, ticket]);
 
     setTickets(tickets.filter((tic) => tic.id !== ticket.id));
@@ -66,12 +63,13 @@ function App() {
 
       <Counter>
 
+
         <div>
-          <Suspense fallback={<p className='text-center mb-20'><span className="loading loading-spinner loading-xl"></span></p>}>
+
+          <Suspense>
             <div>
               {
                 <Tickets
-
                   handleAddToTask={handleAddToTask}
                   handleCompleteTask={handleCompleteTask}
                   inProgress={inProgress}
